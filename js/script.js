@@ -3,47 +3,51 @@ let currentsong = new Audio();
 let songs;
 let currFolder;
 
+let metadata = {};
+async function loadMetadata() {
+    const a = await fetch('/all.json');
+    metadata = await a.json();
+}
+
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`)
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response
-    let as = div.getElementsByTagName("a");
-    songs = []
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split("/").pop());
-        }
-    }
+    const parts = folder.split('/');
+    const type = parts[0];
+    const name = parts[1]; 
 
-    // Show all the songs in the playlist
-    let songul = document.querySelector(".songlist").getElementsByTagName("ul")[0];
-    songul.innerHTML = ""
-    for (const song of songs) {
-        songul.innerHTML = songul.innerHTML +
-            `<li>
+    // Get song list from metadata
+    const entry = metadata[type][name];
+    if (!entry || !entry.files) return [];
+    // Extract only the file names (like "song.mp3")
+
+    songs = entry.files.map(filePath => filePath.split('/').pop());
+    // Show songs in the song list area
+    let songul = document.querySelector(".songlist ul");
+    songul.innerHTML = "";
+    songs.forEach(song => {
+        songul.innerHTML += `
+      <li>
         <img class="invert" src="img/music.svg" alt="">
-        <div class="info ">
-            <div>${song}</div>
-            <div>Santanu</div>
+        <div class="info">
+          <div>${song}</div>
+          <div>Santanu</div>
         </div>
         <div class="playnow">
-            <span>play now</span>
-            <img class="invert" src="img/play.svg" alt="">
+          <span>play now</span>
+          <img class="invert" src="img/play.svg" alt="">
         </div>
-    </li>`;
-    }
-    //attach an eventlistner to each song
-    Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", element => {
-            console.log(e.querySelector(".info").firstElementChild.innerHTML)
-            playmusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
-        })
+      </li>
+    `;
+    });
+
+    // Add click event to each song
+    Array.from(songul.children).forEach(item => {
+        item.addEventListener("click", () => {
+            let track = item.querySelector(".info div").textContent.trim();
+            playmusic(track);
+        });
     });
     return songs;
-
 }
 
 function formatTime(seconds) {
@@ -66,127 +70,100 @@ const playmusic = (track, pause = false) => {
 }
 
 async function displaysongs() {
-    let a = await fetch("/songs/")
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response
-    let anchors = div.getElementsByTagName("a");
-    let cardcontainer = document.querySelector(".cardcontainer")
-    let array = Array.from(anchors);
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
-        if (e.href.includes("/songs")) {
-            let folders = (e.href.split("/").slice(-2)[0]);
-            //console.log(folders);
-            //get the meta data of the folders
-            let a = await fetch(`/songs/${folders}/info.json`)
-            let response = await a.json();
-            //console.log(response);
-            cardcontainer.innerHTML = cardcontainer.innerHTML +
-                `<div data-folder="${folders}" class="card">
+    let cardcontainer = document.querySelector(".cardcontainer");
+    for (const folder in metadata.songs) {
+        const entry = metadata.songs[folder];
+        console.log(entry)
+        //if (!entry.files || entry.files.length === 0) continue;
+        const res = await fetch(entry.info);
+        const info = await res.json();
+        cardcontainer.innerHTML += `
+            <div data-folder="${folder}" class="card">
                 <div class="play">
-                <img src="img/ppp.svg" alt="play">
+                    <img src="img/ppp.svg" alt="play">
                 </div>
-                <img class="brd1" 
-                src="/songs/${folders}/cover.jpg" 
-                alt="">
-                <p class="font mall underline">${response.title}</p>
-                <p class="mall font1 underline">${response.description}</p>
-                </div>`
-        }
+                <img class="brd1" src="${entry.cover}" alt="">
+                <p class="font mall underline">${info.title}</p>
+                <p class="mall font1 underline">${info.description}</p>
+            </div>
+        `;
     }
-    //Load the playlist when the card is clicked
+
+    // Load the playlist when the card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            console.log("Fetching Songs")
+            console.log("Fetching Songs");
             document.querySelector('.before-login').style.display = 'none';
             document.querySelector('.after-login').style.display = 'block';
             songs = await getsongs(`songs/${item.currentTarget.dataset.folder}`);
             playmusic(songs[0]);
-        })
-    })
+        });
+    });
 }
 
+//diplay artist
 async function displayArtist() {
-    let a = await fetch("/artist/")
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
     let cardcontainer = document.querySelector(".cardcontainer1");
-    let anchors = div.getElementsByTagName("a");
-    let array = Array.from(anchors);
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
-        if (e.href.includes("/artist")) {
-            let folders = (e.href.split("/").slice(-2)[0]);
-            //console.log(folders);
-            let a = await fetch(`/artist/${folders}/info.json`)
-            let response = await a.json();
-            //console.log(response);
-            cardcontainer.innerHTML +=
-                `<div class="card">
-                        <div class="play">
-                             <img src="img/ppp.svg" alt="play">
-                        </div>
-                        <img class="brd" src="/artist/${folders}/cover.jpg" alt="">
-                        <p class="font mall underline">${response.title}</p>
-                        <p class="mall font1 underline">${response.description}</p>
-                </div>`
-        }
+
+    for (const folder in metadata.artist) {
+        const entry = metadata.artist[folder];
+
+        const res = await fetch(entry.info);
+        const info = await res.json();
+
+        cardcontainer.innerHTML += `
+            <div class="card">
+                <div class="play">
+                    <img src="img/ppp.svg" alt="play">
+                </div>
+                <img class="brd" src="${entry.cover}" alt="">
+                <p class="font mall underline">${info.title}</p>
+                <p class="mall font1 underline">${info.description}</p>
+            </div>
+        `;
     }
 }
-
 
 //display album and play songs
 async function displayAlbums() {
-    let a = await fetch("/album/")
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response
-    let anchors = div.getElementsByTagName("a");
-    let cardcontainer = document.querySelector(".cardcontainer2")
-    let array = Array.from(anchors);
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
-        if (e.href.includes("/album")) {
-            let folders = (e.href.split("/").slice(-2)[0]);
-            //console.log(folders);
-            //get the meta data of the folders
-            let a = await fetch(`/album/${folders}/info.json`)
-            let response = await a.json();
-            //console.log(response);
-            cardcontainer.innerHTML = cardcontainer.innerHTML +
-                `<div data-folder="${folders}" class="card-album">
-            <div class="play">
-            <img src="img/ppp.svg" alt="play">
+    let cardcontainer = document.querySelector(".cardcontainer2");
+
+    for (const folder in metadata.album) {
+        const entry = metadata.album[folder];
+        const res = await fetch(entry.info);
+        const info = await res.json();
+
+        cardcontainer.innerHTML += `
+            <div data-folder="${folder}" class="card-album">
+                <div class="play">
+                    <img src="img/ppp.svg" alt="play">
+                </div>
+                <img class="brd1" src="${entry.cover}" alt="">
+                <p class="font mall underline">${info.title}</p>
+                <p class="mall font1 underline">${info.description}</p>
             </div>
-            <img class="brd1" 
-            src="/album/${folders}/cover.jpg" 
-            alt="">
-            <p class="font mall underline">${response.title}</p>
-            <p class="mall font1 underline">${response.description}</p>
-            </div>`
-        }
+        `;
     }
-    //Load the playlist when the card is clicked
+
     Array.from(document.getElementsByClassName("card-album")).forEach(e => {
         e.addEventListener("click", async item => {
-            console.log("Fetching Songs")
+            console.log("Fetching Songs");
             document.querySelector('.before-login').style.display = 'none';
             document.querySelector('.after-login').style.display = 'block';
             songs = await getsongs(`album/${item.currentTarget.dataset.folder}`);
             playmusic(songs[0]);
-        })
-    })
-
+        });
+    });
 }
 
 async function main() {
+    await loadMetadata();
     //get songs
     songs = await getsongs("songs/cs");
-    playmusic(songs[0], true);
+    if (songs.length > 0) {
+        playmusic(songs[0], true);
+    }
     //display all the album on the page
-
     displaysongs();
     displayArtist();
     displayAlbums();
@@ -260,16 +237,14 @@ async function main() {
         }
     })
     //add event listner to volume image
-    document.querySelector(".volume img").addEventListener("click",e=>{
-        if(e.target.src.includes("img/volume.svg"))
-        {
-            e.target.src=e.target.src.replace("img/volume.svg","img/muted.svg");
-            currentsong.volume=0;
+    document.querySelector(".volume img").addEventListener("click", e => {
+        if (e.target.src.includes("img/volume.svg")) {
+            e.target.src = e.target.src.replace("img/volume.svg", "img/muted.svg");
+            currentsong.volume = 0;
         }
-        else
-        {
-            e.target.src=e.target.src.replace("img/muted.svg","img/volume.svg");
-            currentsong.volume=0.5;
+        else {
+            e.target.src = e.target.src.replace("img/muted.svg", "img/volume.svg");
+            currentsong.volume = 0.5;
         }
     })
 }

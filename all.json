@@ -1,0 +1,112 @@
+{
+  "songs": {
+    "cs": {
+      "cover": "songs/cs/cover.jpg",
+      "info": "songs/cs/info.json",
+      "files": ["songs/cs/Zara_Thehro_Song.mp3"]
+    },
+    "csa": {
+      "cover": "songs/csa/cover.jpg",
+      "info": "songs/csa/info.json",
+      "files": ["songs/csa/G.O.A.T._(256k).mp3"]
+    },
+    "csb": {
+      "cover": "songs/csb/cover.jpg",
+      "info": "songs/csb/info.json",
+      "files": ["songs/csb/WAVY_KARAN_AUJLA(256k).mp3"]
+    },
+    "csc": {
+      "cover": "songs/csc/cover.jpg",
+      "info": "songs/csc/info.json",
+      "files": []
+    },
+    "csd": {
+      "cover": "songs/csd/cover.jpg",
+      "info": "songs/csd/info.json",
+      "files": []
+    },
+    "cse": {
+      "cover": "songs/cse/cover.jpg",
+      "info": "songs/cse/info.json",
+      "files": ["songs/cse/Aam_Jahe_Munde(256k).mp3"]
+    },
+    "ncs": {
+      "cover": "songs/ncs/cover.jpg",
+      "info": "songs/ncs/info.json",
+      "files": [
+        "songs/ncs/Amar_hiyar_majhe.mp3",
+        "songs/ncs/Paisa.mp3"
+      ]
+    }
+  },
+  "album": {
+    "aaa": {
+      "cover": "album/aaa/cover.jpg",
+      "info": "album/aaa/info.json",
+      "files": [
+        "album/aaa/Aisi_Lagi_Lagan.mp3",
+        "album/aaa/dekho_dekho.mp3",
+        "album/aaa/Rab_bhi.mp3",
+        "album/aaa/Tere_Naina.mp3"
+      ]
+    },
+    "bbb": {
+      "cover": "album/bbb/cover.jpg",
+      "info": "album/bbb/info.json",
+      "files": [
+        "album/bbb/Love_yaa.mp3",
+        "album/bbb/Shiddat.mp3",
+        "album/bbb/Tera_isk.mp3"
+      ]
+    },
+    "c": {
+      "cover": "album/c/cover.jpg",
+      "info": "album/c/info.json",
+      "files": []
+    },
+    "d": {
+      "cover": "album/d/cover.jpg",
+      "info": "album/d/info.json",
+      "files": []
+    },
+    "e": {
+      "cover": "album/e/cover.jpg",
+      "info": "album/e/info.json",
+      "files": []
+    },
+    "f": {
+      "cover": "album/f/cover.jpg",
+      "info": "album/f/info.json",
+      "files": []
+    }
+  },
+  "artist": {
+    "a": {
+      "cover": "artist/a/cover.jpg",
+      "info": "artist/a/info.json"
+    },
+    "b": {
+      "cover": "artist/b/cover.jpg",
+      "info": "artist/b/info.json"
+    },
+    "c": {
+      "cover": "artist/c/cover.jpg",
+      "info": "artist/c/info.json"
+    },
+    "d": {
+      "cover": "artist/d/cover.jpg",
+      "info": "artist/d/info.json"
+    },
+    "e": {
+      "cover": "artist/e/cover.jpg",
+      "info": "artist/e/info.json"
+    },
+    "f": {
+      "cover": "artist/f/cover.jpg",
+      "info": "artist/f/info.json"
+    },
+    "g": {
+      "cover": "artist/g/cover.jpg",
+      "info": "artist/g/info.json"}
+    }
+}

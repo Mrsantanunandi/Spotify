@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ultility.css">
+    <title>Spotify - Web Player: Music for everyone</title>
+</head>
+
+<body>
+    <header>
+        <div class="hamburger">
+            <img src="img/hamburger.svg" alt="">
+        </div>
+        <div class="logo">
+            <img src="img/logo.svg" alt="logo">
+        </div>
+        <div class="home">
+            <img src="img/home.svg" alt="home">
+        </div>
+        <div class="searchbar">
+            <img src="img/search.svg" alt="search">
+            <input type="text" placeholder="What do you want to play?">
+            <img class="browse-icon" src="img/browse.svg" alt="browse">
+        </div>
+        <div class="gap"></div>
+        <div class="list">
+            <ul>
+                <li>Premium</li>
+                <li>Support</li>
+                <li>Download</li>
+            </ul>
+        </div>
+        <h1>|</h1>
+        <div class="line">
+            <img src="img/download.svg" alt="download">
+            <p>Install App</p>
+        </div>
+        <div class="btn">
+            <p>Sign Up</p>
+            <button id="bb"><b>Login</b></button>
+        </div>
+        </div>
+    </header>
+    <div class="container flex">
+        <div class="left red-border">
+            <div class="before-login flex-column">
+                <div class="left-header flex left-header-height-blogin">
+                    <div class="library"><span class="font">Your Library</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                            color="#000000" fill="White">
+                            <path d="M12 4V20M20 12H4" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="scroll-area">
+                    <div class="playlist mtop h-p br ubg relative">
+                        <div class="a">
+                            <span class="font">Create your first playlist</span>
+                            <span>It's easy we'll help you</span>
+                        </div>
+                        <button class="white-btn font">Create playlist</button>
+                    </div>
+                    <div class="podcast mtop mbot h-p br ubg relative">
+                        <div class="a">
+                            <span class="font">Let's find someones podcast</span>
+                            <span class="font2">We'll keep you update on new episodes</span>
+                        </div>
+                        <button class="white-btn font">Browse podcast</button>
+                    </div>
+                </div>
+                <div class="footer-left">
+                    <div class="one font3 mtop mleft mbot1">
+                        <a href="https://www.spotify.com/in-en/legal/"><span>Legal</span></a>
+                        <a href="https://www.spotify.com/in-en/safetyandprivacy/"><span>Safety &amp;
+                                Privacy Center</span></a>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/"> <span>Privacy
+                                Policy</span> </a>
+                    </div>
+                    <div class="two font3 mleft mbot1">
+                        <a href="https://www.spotify.com/in-en/legal/cookies-policy/"> <span>Cookies</span> </a>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3"> <span>About Ads</span>
+                        </a>
+                        <a href="https://www.spotify.com/in-en/accessibility/">
+                            <span>Accessibility</span>
+                        </a>
+                    </div>
+                    <div class="three mleft font2 ">
+                        <a href="https://www.spotify.com/legal/cookies-policy/" target="_blank" rel="noopener">
+                            <span>Cookies</span>
+                        </a>
+                    </div>
+                    <button id="foot" class="flex justify-content item mleft mtop font2">
+                        <img src="img/earth.svg" alt="earth">
+                        <p>English</p>
+                    </button>
+                </div>
+            </div>
+            <div class="after-login flex-column">
+                <div class="left-header left-header-height-alogin">
+                    <div class="close">
+                        <img src="img/close.svg" alt="close">
+                    </div>
+                    <div class="library1 mleft">
+                        <img class="abc" src="img/your_playlist.svg" alt="">
+                        <span class="font mrt mtop1">Your Library</span>
+                        <div class="xyz">
+                            <img src="img/add.svg" alt="add">
+                        </div>
+                        <div class="xyz pq">
+                            <img src="img/expand.svg" alt="expand">
+                        </div>
+                    </div>
+
+                    <div class="twobtn mleft">
+                        <button>Playlist</button>
+                        <button>Artists</button>
+                    </div>
+                </div>
+                <div class="scroll-area">
+                    <div class="songlist font1">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right red-border scroll-area">
+            <div class="spotifyplaybar">
+                <div class="trending-song bgc">
+                    <div class="inner flex">
+                        <h2>Trending Songs</h2>
+                        <p>show all</p>
+                    </div>
+                </div>
+                <div class="cardcontainer">
+                </div>
+                <div class="trending-song">
+                    <div class="inner flex">
+                        <h2>Popular artist</h2>
+                        <p>show all</p>
+                    </div>
+                </div>
+                <div class="cardcontainer1">
+                </div>
+                <div class="trending-song">
+                    <div class="inner flex">
+                        <h2>Made For You</h2>
+                        <p>show all</p>
+                    </div>
+                </div>
+                <div class="cardcontainer2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="playbar">
+            <div class="songinfo">
+            </div>
+            <div class="songsbutton">
+                <img id="previous" src="img/prevsong.svg" alt="">
+                <img id="play" src="img/play.svg" alt="">
+                <img id="next" src="img/nextsong.svg" alt="">
+            </div>
+            <div class="volume">
+                <img src="img/volume.svg" alt="">
+                <div class="timevol">
+                    <input type="range" name="volume" min="0" max="100" value="50">
+                </div>
+            </div>
+            <div class="songtime">
+                <div class="first-time"></div>
+                <div class="second-time"></div>
+            </div>
+            <div class="seekbar">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

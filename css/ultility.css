@@ -1,0 +1,240 @@
+.flex {
+    display: flex;
+}
+
+.red-border {
+    border: 2px solid red;
+    margin: 3px;
+}
+
+.justify-content {
+    justify-content: center;
+}
+
+.item {
+    align-items: center;
+}
+
+.font {
+    font-size: 16px;
+    font-weight: 700;
+}
+.invert{
+    filter: invert(1);
+}
+.library svg {
+    filter: invert(1);
+    margin-left: 12.5vw;
+}
+
+.mtop {
+    margin-top: 1.5rem;
+}
+
+.mbot {
+    margin-bottom: 1.5rem;
+}
+
+.h-p {
+    height: 8.5rem;
+}
+
+.relative {
+    position: relative;
+}
+
+.ubg {
+    background: #1f1f1f;
+}
+
+.br {
+    border-radius: 1rem;
+}
+
+.scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.scroll-area::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-area::-webkit-scrollbar-button {
+    display: none;
+}
+
+.a {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.a span {
+    margin: 10px 1px 1px 12px;
+}
+
+.brd {
+    border-radius: 50%;
+}
+
+.brd1 {
+    border-radius: 6px;
+}
+
+.white-btn {
+    margin-left: 32px;
+    padding: 6px 16px;
+    border-radius: 1.5rem;
+
+}
+
+.xyz {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 14px;
+}
+
+.mtop1 {
+    margin-top: 4px;
+}
+
+.xyz img {
+    width: 17px;
+}
+
+.font2 {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.abc {
+    margin-right: 10px;
+    width: 15px;
+}
+
+.mleft {
+    margin-left: 20px;
+}
+
+.mrt {
+    margin-right: 6rem;
+}
+
+.mbot1 {
+    margin-bottom: 10px;
+}
+
+.one .two {
+    display: flex;
+}
+
+.one a {
+    margin: 5px;
+}
+
+.two a {
+    margin: 5px;
+}
+
+.three a {
+    margin: 5px;
+    color: white;
+}
+
+.font3 {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.three a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+#foot img {
+    width: 15px;
+    margin: 5px;
+}
+
+#foot:hover {
+    border: 2.2px solid white;
+}
+
+#foot {
+    background-color: transparent;
+    padding: 4px 13px;
+    border-radius: 1.2rem;
+    color: white;
+    border: 2px solid gray;
+}
+
+.bgc {
+    background-color: #1f1f1f;
+}
+
+.trending-song {
+    height: 5rem;
+    display: flex;
+}
+
+.trending-song .inner {
+    margin-top: 2rem;
+    justify-content: space-around;
+    margin-left: 2rem;
+}
+.seekbar, .circle, .playbar, .card ,.volume input{
+    user-select: none;    
+    outline: none;        
+    cursor: pointer;      
+}
+.inner h2:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+}
+
+.inner p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.inner p {
+    margin-left: 50vw;
+    margin-top: 0.8rem;
+    color: rgb(179, 179, 179);
+}
+
+.mall {
+    margin: -10px 0px 12px 12px;
+}
+
+.underline:hover {
+    text-decoration: underline;
+}
+
+.font1 {
+    font-size: 14px;
+    font-weight: 400;
+}
+.none{
+    display: none;
+}
+
+.after-login{
+    display: none;
+}
